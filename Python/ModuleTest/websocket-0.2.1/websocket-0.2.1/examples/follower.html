@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>websocket client test</title>
+    <script src="/json.js"></script> <!-- for ie -->
+    <script src="/websocket/flashsocket.js"></script>
+  </head>
+  <body>
+    
+    <script>
+      function setupSocket() {    
+          socket = new WebSocket('ws://localhost:$PORT/');
+          if ('console' in window) console.log('created a socket');
+
+          socket.onopen = function(obj) {
+              document.getElementById('message').innerHTML = 'Connected';
+              if ('console' in window) console.log('onopen');
+          };
+
+          socket.onmessage = function (obj) {
+            document.getElementById('message').innerHTML = obj.data;
+          };
+
+          socket.onclose = function (obj) {
+            document.getElementById('message').innerHTML = 'Disconnected';
+            setTimeout(setupSocket, 2000);
+            if ('console' in window) console.log('onclose', obj);
+          };
+
+          socket.onerror = function (obj) {
+              document.getElementById('message').innerHTML = 'Error';
+              if ('console' in window) console.log('onerror', obj);
+          };
+        };
+     setupSocket();
+    </script>
+    
+    <h1>Sample websocket client</h1>
+    <div><p id='message'>Connecting...</p></div>
+  </body>
+</html>

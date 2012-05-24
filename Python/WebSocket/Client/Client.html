@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>		
+		<script type = "text/javascript">
+		
+		
+			
+		function Main()
+		{
+			printOut("Connecting...");
+			
+			var ws = new WebSocket("ws://localhost:9999/");
+			
+			ws.onopen = function() 
+			{  
+				printOut("OnOpen...");
+				ws.send("Hello Mr. Server!");
+			};
+			
+			ws.onmessage = function (e)
+			{
+				printOut("OnMessage...");
+				alert(e.data);
+			};  
+			
+			ws.onclose = function()
+			{
+				printOut("OnClose...");
+			}; 
+		};
+		
+		function printOut( str )
+		{
+			document.getElementById("output").innerHTML=str;
+		};
+		
+		</script>
+	</head>
+ 
+	<body onload = "Main()">
+		 <p id="output"> Output </p>
+		 
+		 
+	</body>
+
+</html>

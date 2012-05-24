@@ -1,0 +1,6 @@
+recursive-include websocket *.py
+recursive-include websocket/data *.py *.swf *.js
+recursive-include examples *.py *.html *.js
+include flash.py
+include LICENSE
+include MANIFEST.in
