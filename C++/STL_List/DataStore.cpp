@@ -24,6 +24,8 @@ void DataStore::PushData()
 
 void DataStore::RemoveAllData()
 {
+	Data* pD = *(que.begin());
+
 	for ( stl_it it = que.begin(); it != que.end();  )
 	{
 		Data* pData = *it;
